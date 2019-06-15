@@ -97,6 +97,15 @@ def startPVE():
         print(str(win)+"胜利")
         
 
+def startEVE():
+    global time
+    while time < 200:
+        ai()
+        ai()
+    if win != "":
+        print(str(win)+"胜利")
+
+
 def ai():
     ok=1
     while ok==1:
@@ -106,8 +115,6 @@ def ai():
             addchest(int(x),int(y))
             ok=0
             
-
-
 def checkwin(x,y):
     global chest_table
     global player
@@ -216,5 +223,6 @@ while len(chest_table) <20:
 print_Table(chest_table)
 
 #startPVP()
-startPVE()
+#startPVE()
 
+startEVE()
