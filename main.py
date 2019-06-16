@@ -99,8 +99,7 @@ def startPVE():
 
 def startEVE():
     global time
-    while time < 200:
-        ai()
+    while time < 400:
         ai()
     if win != "":
         print(str(win)+"胜利")
@@ -143,11 +142,11 @@ def checkwin(x,y):
     ay=y
     bx=x
     by=y
-    while ax<20 and ay<20:
+    while ax<21 and ay<21:
         arr.append(chest_table[ay-1][ax-1])
         ax=ax+1
         ay=ay+1
-    while by>-1 and bx>-1:
+    while by>0 and bx>0:
         bx=bx-1
         by=by-1
         arr.insert(0,chest_table[by-1][bx-1])
@@ -165,21 +164,22 @@ def checkwin(x,y):
     aay=y
     bbx=x
     bby=y
-    while aax>-1 and aay<20:
+    while aax>0 and aay<21:
         arrr.insert(0,chest_table[aay-1][aax-1])
         aax=aax-1
         aay=aay+1
         print(aax)
         print(aay)
         print(arrr)
-    while bbx<20 and bby>-1:
+    while bbx<20 and bby>1:
         bbx=bbx+1
         bby=bby-1
         arrr.append(chest_table[bby-1][bbx-1])
+        print(bbx)
+        print(bby)
         print(arrr)
     for aaaa in arrr:
         print(aaaa)
-        print(arrr[aaaa])
         if aaaa==int(player):
             count = count+1
             if count >= 5:
