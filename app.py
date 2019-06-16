@@ -9,7 +9,7 @@
 # chess=chess.StartGame(20,0)
 
 #public method of ChessApp
-# add(x,y) to chess a son on [x,y] start by 1
+# add(x,y) to chess a son on [x,y] start by 1 if chess return true else return false
 # print()  to print the table with human style
 
 #public proeretdrgfd of ChessApp
