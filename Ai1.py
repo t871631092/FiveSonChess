@@ -9,5 +9,6 @@ def scan()
         for b in range(0,19):
             if chest_table[a][b] == 0:
                 score += 0
+    break
 
 scan()
