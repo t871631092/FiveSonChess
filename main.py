@@ -104,7 +104,7 @@ def startEVE():
     if win != "":
         print(str(win)+"胜利")
 
-
+#fakeAI
 def ai():
     ok=1
     while ok==1:
@@ -223,6 +223,6 @@ while len(chest_table) <20:
 print_Table(chest_table)
 
 #startPVP()
-#startPVE()
+startPVE()
 
-startEVE()
+#startEVE()
