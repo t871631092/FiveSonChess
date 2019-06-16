@@ -7,6 +7,7 @@ class StartGame:
     #Current chess player id (A or B)
     player="A"
 
+    
 
     #Construction_start the game
     #mode=0:PVP
@@ -15,10 +16,6 @@ class StartGame:
     def __init__(self,column,mode):
         self.column=column
         self.__createTable()
-
-
-
-        
     ##Private
     #Method_Return the last time player
     def __lastPlayer(self):
@@ -149,6 +146,7 @@ class StartGame:
     
     #Method_Print the table
     def print(self):
+#        linestr="   "
         for row in range(len(self.Table)-1,-1,-1):
             line=str(row+1).zfill(2)+" "
             for td in self.Table[row]:
