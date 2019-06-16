@@ -6,10 +6,9 @@ player=1
 win=""
 #method - pring chest table
 def print_Table(chesttable):
+#    
 #    for row in range(len(chesttable),0,-1):
 #        print(str(chesttable[row-1])+"第"+str(row)+"行")
-
-
     for row in range(len(chesttable)-1,-1,-1):
         line=str(row+1).zfill(2)+" "
         for td in chesttable[row]:
