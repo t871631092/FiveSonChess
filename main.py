@@ -6,10 +6,11 @@ player=1
 win=""
 #method - pring chest table
 def print_Table(chesttable):
+#    achieve table show 1
 #    for row in range(len(chesttable),0,-1):
 #        print(str(chesttable[row-1])+"第"+str(row)+"行")
 
-
+#    achieve table show 2
     for row in range(len(chesttable)-1,-1,-1):
         line=str(row+1).zfill(2)+" "
         for td in chesttable[row]:
@@ -27,11 +28,6 @@ def print_Table(chesttable):
     for tf in range(20):
         foot=foot+" "+str(tf+1).zfill(2)+"  "
     print(foot)
-
-
-#    print(chest_table)
-        
-
 
 
 #method - add chest to table
@@ -96,7 +92,7 @@ def startPVE():
     if win != "":
         print(str(win)+"胜利")
         
-
+# start the game with EVE mode
 def startEVE():
     global time
     while time < 400:
@@ -104,16 +100,18 @@ def startEVE():
     if win != "":
         print(str(win)+"胜利")
 
-#fakeAI
+#FakeAI
 def ai():
     ok=1
     while ok==1:
-        x = random.randint(0,20)
-        y = random.randint(0,20)
+        x = random.randint(1,20)
+        y = random.randint(1,20)
         if checkchest(int(x),int(y))==1:
             addchest(int(x),int(y))
             ok=0
-            
+
+
+#Check the is it win ?
 def checkwin(x,y):
     global chest_table
     global player
@@ -222,7 +220,9 @@ while len(chest_table) <20:
 
 print_Table(chest_table)
 
-#startPVP()
-startPVE()
 
+#strat the game by
+#startPVP()
 #startEVE()
+
+startPVE()
