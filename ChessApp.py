@@ -88,7 +88,7 @@ class StartGame:
                 # print(player)#debug
                 count = count+1
                 if count >= 5:
-                    # print("45degree")#debug
+                    print("45degree")#debug
                     return True
             else:
                 count = 0
@@ -111,7 +111,7 @@ class StartGame:
             if aaaa==player:
                 count = count+1
                 if count >= 5:
-                    # print("-45degree")#debug
+                    print("-45degree")#debug
                     return True
             else:
                 count = 0

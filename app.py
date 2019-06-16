@@ -5,7 +5,8 @@
 #parameter
 # column (int): the column of the table row
 # mode (int):the mode of the game like PVP PVE EVE
-#For example chess=chess.StartGame(20,0)
+#For example 
+# chess=chess.StartGame(20,0)
 
 #public method of ChessApp
 # add(x,y) to chess a son on [x,y] start by 1
@@ -14,7 +15,9 @@
 #public proeretdrgfd of ChessApp
 # .Table   get the array of the game 
 # .Player  get the current player of chessing     
-#For example | print(chess.Table) | print(chess.player)
+#For example 
+# print(chess.Table) 
+# print(chess.player)
 import ChessApp as chess
 
 chess=chess.StartGame(20,0)
