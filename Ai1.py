@@ -1,6 +1,7 @@
 import random
+from main import chess_table
 
-ScoreModel=[(10, (0,1,1,0,0)), #Model of chest 好像没什么卵用?
+ScoreModel=[(10, (0,1,1,0,0)), #Model of chess 好像没什么卵用?
             (10, (0,0,1,1,0)),
             (20, (1,1,0,1,0)),
             (30, (0,0,1,1,1)),
@@ -18,13 +19,13 @@ ScoreModel=[(10, (0,1,1,0,0)), #Model of chest 好像没什么卵用?
 score = 0
 
 def scan(tablescore):
-    #global chest_table
+    global chess_table
     tablescore=[]
     tablescore = [[[0 for count in range(5)] for x in range(19)] for y in range(19)]
     for a in range(0,19):
         for b in range(0,19):
             #if it is empty, then begin to scan
-            if chest_table[a][b] == 0: 
+            if chess_table[a][b] == 0: 
                 aa=a
                 bb=b
                 #upward
