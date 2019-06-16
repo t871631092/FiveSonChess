@@ -14,13 +14,13 @@
 
 #public proeretdrgfd of ChessApp
 # .Table   get the array of the game 
-# .Player  get the current player of chessing     
+# .Player  get the current player of chessing    
 #For example 
 # print(chess.Table) 
 # print(chess.player)
-import ChessApp as chess
+import ChessApp as chessapp
 
-chess=chess.StartGame(20,0)
+chess=chessapp.StartGame(20,0)
 chess.add(1,1)
 chess.add(2,2)
 chess.add(1,2)

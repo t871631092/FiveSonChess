@@ -48,7 +48,7 @@ class StartGame:
         #0 degree
         player=self.__lastPlayer()
         count = 0
-        for xx in range(1,20):
+        for xx in range(1,self.column):
             if self.__checkChess(xx,y)==player: 
                 count = count+1
                 if count >= 5:
@@ -58,7 +58,7 @@ class StartGame:
                 count = 0
         #90 degree
         count = 0
-        for yy in range(1,20):
+        for yy in range(1,self.column):
             if self.__checkChess(x,yy)==player: 
                 count = count+1
                 if count >= 5:
@@ -73,7 +73,7 @@ class StartGame:
         ay=y
         bx=x
         by=y
-        while ax<21 and ay<21:
+        while ax<=self.column and ay<=self.column:
             arr.append(self.__checkChess(ax,ay))
             ax=ax+1
             ay=ay+1
@@ -99,11 +99,11 @@ class StartGame:
         aay=y
         bbx=x
         bby=y
-        while aax>0 and aay<21:
+        while aax>0 and aay<=self.column:
             arrr.insert(0,self.__checkChess(aax,aay))
             aax=aax-1
             aay=aay+1
-        while bbx<20 and bby>1:
+        while bbx<self.column and bby>1:
             bbx=bbx+1
             bby=bby-1
             arrr.append(self.__checkChess(bbx,bby))
