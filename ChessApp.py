@@ -48,7 +48,7 @@ class StartGame:
         #0 degree
         player=self.__lastPlayer()
         count = 0
-        for xx in range(1,self.column):
+        for xx in range(1,self.column+1):
             if self.__checkChess(xx,y)==player: 
                 count = count+1
                 if count >= 5:
@@ -58,9 +58,13 @@ class StartGame:
                 count = 0
         #90 degree
         count = 0
-        for yy in range(1,self.column):
+        for yy in range(1,self.column+1):
+            print(yy)#debug
+            print(x)#debug
+            print(self.__checkChess(x,yy))#debug
             if self.__checkChess(x,yy)==player: 
                 count = count+1
+                print(count)#debug
                 if count >= 5:
                     print("90degree")#debug
                     return True
@@ -159,7 +163,7 @@ class StartGame:
             print(line)
         print("   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+")
         foot="    "
-        for tf in range(20):
+        for tf in range(self.column):
             foot=foot+" "+str(tf+1).zfill(2)+"  "
         print(foot)
 

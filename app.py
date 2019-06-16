@@ -20,7 +20,7 @@
 # print(chess.player)
 import ChessApp as chessapp
 
-chess=chessapp.StartGame(20,0)
+chess=chessapp.StartGame(5,0)
 chess.add(1,1)
 chess.add(2,2)
 chess.add(1,2)
@@ -30,6 +30,6 @@ chess.add(4,4)
 chess.add(1,4)
 chess.add(5,5)
 chess.add(1,5)
-chess.add(6,6)
-chess.add(1,6)
-print(chess.Table)
+chess.add(4,2)
+chess.add(1,5)
+#print(chess.Table)
