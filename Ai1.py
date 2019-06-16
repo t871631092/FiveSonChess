@@ -29,7 +29,7 @@ def scan(tablescore):
                 bb=b
                 #upward
                 #if upward is empty, then add 0 score
-                while bb - 1>=0 and tablescore[aa][bb-1] == 0: 
+                while bb - 1>=0 and tablescore[aa][bb-1] == 0: #if upward is empty, then do not add score
                     bb -= 1
                     tablescore[a][b][0] += score
                 if bb-1 >=0 and tablescore[aa][bb-1] == 2: #if upward is 2, then add 2 score
