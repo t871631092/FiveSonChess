@@ -20,7 +20,6 @@ score = 0
 
 def scan(tablescore):
     global chess_table
-    tablescore=[]
     tablescore = [[[0 for count in range(5)] for x in range(19)] for y in range(19)]
     for a in range(0,19):
         for b in range(0,19):
@@ -33,14 +32,25 @@ def scan(tablescore):
                 while bb - 1>=0 and tablescore[aa][bb-1] == 0: 
                     bb -= 1
                     tablescore[a][b][0] += score
-                if bb-1 >=0 and tablescore[aa][bb-1] == 2 #if upward is 2, then add 2 score
+                if bb-1 >=0 and tablescore[aa][bb-1] == 2: #if upward is 2, then add 2 score
                     tablescore[a][b][0] += 1
-                if bb-1 >=0 and tablescore[aa][bb-1] == 1
+                if bb-1 >=0 and tablescore[aa][bb-1] == 1:
                     tablescore[a][b][0] -= 2
                 #dowmward
+                aa=a
+                bb=b
+                while bb + 1>=0 and tablescore[aa][bb+1] == 0: 
+                    bb += 1
+                    tablescore[a][b][0] += score
+                if bb+1 >=0 and tablescore[aa][bb-1] == 2: #if upward is 2, then add 2 score
+                    tablescore[a][b][0] += 1
+                if bb+1 >=0 and tablescore[aa][bb-1] == 1:
+                    tablescore[a][b][0] -= 2
                 #rightward
                 #leftward
-                score += 0
-    break
+                #score += 0
+    return tablescore
 
-scan()
+tablescore=[]
+scan(tablescore)
+print(tablescore)
