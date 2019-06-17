@@ -1,48 +1,64 @@
 class StartGame:
 
-    #The chess table array
+    #The chess table array 
+    # 棋盘列表（数组）
     Table=[]
     #The number of the row and column in the chess table
+    # 棋盘的行（列）数
     column=0
     #Current chess player id (A or B)
+    # 当前玩家
     player="A"
+    #round- the round of the game
+    #当前回合数
+    CurrentRound=0
 
-    
-
-    #Construction_start the game
+    #Construction_start the game 
+    # 构造函数-初始化
     #mode=0:PVP
+    # 模式0
     #mode=1:PVE
+    # 模式1
     #mode=2:EVE
+    # 模式2
     def __init__(self,column,mode):
         self.column=column
         self.__createTable()
-    ##Private
-    #Method_Return the last time player
+
+
+
+        
+    ##Private私有方法（函数）
+    #Method_Return the last time player 
+    # 方法_返回上一次的玩家
     def __lastPlayer(self):
         if self.player=="A":
             return "B"
         elif self.player=="B":
             return "A"
 
-    #Method_Create chess table
+    #Method_Create chess table 
+    # 方法_创建棋盘
     def __createTable(self):
         self.Table=[[0 for cell in range(self.column) ] for row in range(self.column)]
         print("初始化棋盘")
-        self.print()
+        self.print(self)
 
-    #Method_Add chess to table : input the x,y and player id(A/B)
+    #Method_Add chess to table : input the x,y and player id(A/B) 
+    # 方法_在数组上添加棋子
     def __addChess(self,x,y,z):
         self.Table[y-1][x-1]=z
 
-    #Method_Check chess info return | 0 / A / B |
+    #Method_Check chess info return | 0 / A / B | 
+    # 方法_返回输入坐标棋子信息 返回 0 A B
     def __checkChess(self,x,y):
         return self.Table[y-1][x-1]
 
-    #Method_
-        
     #Method_Is accord with condition when it accord return |true|
+    # 方法_判断游戏是否胜利 返回true
     def __checkWin(self,x,y):
         #0 degree
+        # 水平
         player=self.__lastPlayer()
         count = 0
         for xx in range(1,self.column+1):
@@ -54,6 +70,7 @@ class StartGame:
             else:
                 count = 0
         #90 degree
+        # 垂直
         count = 0
         for yy in range(1,self.column+1):
             print(yy)#debug
@@ -68,6 +85,7 @@ class StartGame:
             else:
                 count = 0
         #45 degree
+        # 左下到右上
         count = 0
         arr=[]
         ax=x
@@ -94,6 +112,7 @@ class StartGame:
             else:
                 count = 0
         #-45 degree
+        # 左上到右下
         count = 0
         arrr=[]
         aax=x
@@ -121,6 +140,7 @@ class StartGame:
 
 
     #Method_chess when success return |true|
+    # 方法_在输入坐标位置下棋，成功返回true 失败返回false
     def __add(self,x,y):
         if self.__checkChess(x,y)==0:
             if self.player=="A":
@@ -135,9 +155,14 @@ class StartGame:
 
 
     ##Public
+    # 公共方法
 
     #Method_chess
+    # 方法_下棋
     def add(self,x,y):
+        if True:
+            print("棋盘已满");
+            return
         if self.__add(x,y)==True:
             self.print()
             print("玩家"+self.__lastPlayer()+"在["+str(x)+","+str(y)+"]下了一颗棋子")
@@ -145,6 +170,7 @@ class StartGame:
                 print("Winner is Player "+self.player)
     
     #Method_Print the table
+    # 方法_输出棋盘
     def print(self):
 #        linestr="   "
         for row in range(len(self.Table)-1,-1,-1):
