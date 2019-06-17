@@ -1,3 +1,71 @@
+class table:
+    
+    #The chess table array 
+    # 棋盘列表（数组）
+    __Table=[]
+
+    #Construction_start the game 
+    # 构造函数-初始化
+    def __init__(self,column):
+        self.column=column
+        self.__createTable()
+
+    #Method_Create chess table 
+    # 方法_创建棋盘
+    def __createTable(self):
+        self.__Table=[[0 for cell in range(self.column) ] for row in range(self.column)]
+        print("初始化棋盘")
+
+    ##Public
+    # 公共方法
+    #Method_Get Table data
+    # 方法 获取 棋盘列表数据
+    def getTable(self):
+        return self.__Table
+
+    #Method_chess when success return |true|
+    # 方法_在输入坐标位置下棋，成功返回true 失败返回false
+    def add(self,x,y,z):
+        if self.__Table[y-1][x-1]!=0:
+            self.__Table[y-1][x-1]=z
+            return True
+        else:
+            return False
+
+    #Method_Check chess info return | 0 / A / B | 
+    # 方法_返回输入坐标棋子信息 返回 0 A B
+    def check(self,x,y):
+        return self.__Table[y-1][x-1]
+    
+    #Method_Print the table
+    # 方法_输出棋盘
+    def print(self):
+        linestr="   "
+        for X in range(self.column):
+            linestr=linestr+"+----"
+        linestr=linestr+"+"
+        for row in range(len(self.__Table)-1,-1,-1):
+            line=str(row+1).zfill(2)+" "
+            for td in self.__Table[row]:
+                if td==0:
+                    line=line+"|"+"    "
+                else:
+                    line=line+"|"+" +td+ "
+            line=line+"|"
+            print(linestr)
+            print(line)
+        print(linestr)
+        foot="    "
+        for tf in range(self.column):
+            foot=foot+" "+str(tf+1).zfill(2)+"  "
+        print(foot)
+
+    
+
+    
+    
+
+
 class PVP:
 
     #The chess table array 
@@ -34,6 +102,22 @@ class PVP:
                     print("请重新输入")
 
 
+    #Method_Create chess table 
+    # 方法_创建棋盘
+    def __createTable(self):
+        self.Table=[[0 for cell in range(self.column) ] for row in range(self.column)]
+        print("初始化棋盘")
+        self.print()
+
+    #Method_Add chess to table : input the x,y and player id(A/B) 
+    # 方法_在数组上添加棋子
+    def __addChess(self,x,y,z):
+        self.Table[y-1][x-1]=z
+
+    #Method_Check chess info return | 0 / A / B | 
+    # 方法_返回输入坐标棋子信息 返回 0 A B
+    def __checkChess(self,x,y):
+        return self.Table[y-1][x-1]
 
         
     ##Private私有方法（函数）
