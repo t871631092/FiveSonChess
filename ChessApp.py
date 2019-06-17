@@ -1,4 +1,4 @@
-class StartGame:
+class PVP:
 
     #The chess table array 
     # 棋盘列表（数组）
@@ -12,18 +12,26 @@ class StartGame:
     #round- the round of the game
     #当前回合数
     CurrentRound=0
+    #Winner - winner
+    # 胜利的玩家
+    Winner="0"
 
     #Construction_start the game 
     # 构造函数-初始化
-    #mode=0:PVP
-    # 模式0
-    #mode=1:PVE
-    # 模式1
-    #mode=2:EVE
-    # 模式2
-    def __init__(self,column,mode):
+    def __init__(self,column):
         self.column=column
         self.__createTable()
+        while self.CurrentRound<=self.column*self.column:
+            ok=1
+            while ok==1:
+                print("输入x")
+                x=input()
+                print("输入y")
+                y=input()
+                if self.add(x,y)==1:
+                    ok=0
+                else:
+                    print("请重新输入")
 
 
 
@@ -42,7 +50,7 @@ class StartGame:
     def __createTable(self):
         self.Table=[[0 for cell in range(self.column) ] for row in range(self.column)]
         print("初始化棋盘")
-        self.print(self)
+        self.print()
 
     #Method_Add chess to table : input the x,y and player id(A/B) 
     # 方法_在数组上添加棋子
@@ -65,7 +73,8 @@ class StartGame:
             if self.__checkChess(xx,y)==player: 
                 count = count+1
                 if count >= 5:
-                    print("0degree")#debug
+                    #print("0degree")#debug
+                    self.Winner=player
                     return True
             else:
                 count = 0
@@ -73,14 +82,15 @@ class StartGame:
         # 垂直
         count = 0
         for yy in range(1,self.column+1):
-            print(yy)#debug
-            print(x)#debug
-            print(self.__checkChess(x,yy))#debug
+            #print(yy)#debug
+            #print(x)#debug
+            #print(self.__checkChess(x,yy))#debug
             if self.__checkChess(x,yy)==player: 
                 count = count+1
-                print(count)#debug
+                #print(count)#debug
                 if count >= 5:
-                    print("90degree")#debug
+                    #print("90degree")#debug
+                    self.Winner=player
                     return True
             else:
                 count = 0
@@ -107,7 +117,8 @@ class StartGame:
                 # print(player)#debug
                 count = count+1
                 if count >= 5:
-                    print("45degree")#debug
+                    #print("45degree")#debug
+                    self.Winner=player
                     return True
             else:
                 count = 0
@@ -131,7 +142,8 @@ class StartGame:
             if aaaa==player:
                 count = count+1
                 if count >= 5:
-                    print("-45degree")#debug
+                    #print("-45degree")#debug
+                    self.Winner=player
                     return True
             else:
                 count = 0
@@ -160,19 +172,25 @@ class StartGame:
     #Method_chess
     # 方法_下棋
     def add(self,x,y):
-        if True:
-            print("棋盘已满");
+        if self.Winner!="0":
+            print("Player "+str(self.Winner)+" have been win")
+            return
+        if self.CurrentRound>self.column*self.column:
+            print("棋盘已满")
             return
         if self.__add(x,y)==True:
             self.print()
             print("玩家"+self.__lastPlayer()+"在["+str(x)+","+str(y)+"]下了一颗棋子")
             if self.__checkWin(x,y)==True:
-                print("Winner is Player "+self.player)
+                print("Winner is Player "+str(self.Winner))
     
     #Method_Print the table
     # 方法_输出棋盘
     def print(self):
-#        linestr="   "
+        linestr="   "
+        for X in range(self.column):
+            linestr=linestr+"+----"
+        linestr=linestr+"+"
         for row in range(len(self.Table)-1,-1,-1):
             line=str(row+1).zfill(2)+" "
             for td in self.Table[row]:
@@ -183,9 +201,9 @@ class StartGame:
                 elif td=="B":
                     line=line+"|"+" @@ " #在🐴？
             line=line+"|"
-            print("   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+")
+            print(linestr)
             print(line)
-        print("   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+")
+        print(linestr)
         foot="    "
         for tf in range(self.column):
             foot=foot+" "+str(tf+1).zfill(2)+"  "

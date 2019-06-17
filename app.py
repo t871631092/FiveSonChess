@@ -4,7 +4,6 @@
 
 #parameter
 # column (int): the column of the table row
-# mode (int):the mode of the game like PVP PVE EVE
 #For example 
 # chess=chess.StartGame(20,0)
 
@@ -20,7 +19,7 @@
 # print(chess.player)
 import ChessApp as chessapp
 
-chess=chessapp.StartGame(5,0)
+chess=chessapp.StartGame(5)
 chess.add(1,1)
 chess.add(2,2)
 chess.add(1,2)
@@ -33,3 +32,13 @@ chess.add(1,5)
 chess.add(4,2)
 chess.add(1,5)
 #print(chess.Table)
+
+
+# mode (int):the mode of the game like PVP PVE EVE
+
+    #mode=0:PVP
+    # 模式0
+    #mode=1:PVE
+    # 模式1
+    #mode=2:EVE
+    # 模式2w
