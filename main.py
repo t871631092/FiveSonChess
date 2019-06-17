@@ -4,14 +4,8 @@ import random
 time=0
 player=1
 win=""
-<<<<<<< HEAD
-#method - pring chest table
-def print_Table(chesttable):
-
-=======
 #method - pring chess table
 def print_Table(chesstable):
->>>>>>> ecdc29043663f4f0862cfaae2f7dc9bb1fd79f9e
 #    achieve table show 1
 #    for row in range(len(chesstable),0,-1):
 #        print(str(chesstable[row-1])+"第"+str(row)+"行")
