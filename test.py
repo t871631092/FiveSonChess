@@ -1,8 +1,4 @@
-a=float(input())
-
-if a%1==0:
-    print("True") 
-
-
-
-
+a="我"
+print("{0:1}".format(a))
+a="aaa"
+print("{0:1}".format(a))

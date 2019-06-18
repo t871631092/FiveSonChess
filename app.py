@@ -19,19 +19,7 @@
 # print(chess.player)
 import ChessApp as app
 
-chess=app.table(20)
-chess.add(1,1,"A")
-chess.add(2,2,"A")
-chess.add(1,2,"B")
-chess.add(3,3,"B")
-chess.add(1,3,"B")
-chess.add(4,4,"B")
-chess.add(1,4,"B")
-chess.add(5,5,"B")
-chess.add(1,5,"B")
-chess.add(4,2,"B")
-chess.add(1,5,"B")
-chess.print()
+chess=app.PVP()
 #print(chess.Table)
 
 

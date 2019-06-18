@@ -26,8 +26,8 @@ class table:
     #Method_chess when success return |true|
     # 方法_在输入坐标位置下棋，成功返回true 失败返回false
     def add(self,x,y,z):
-        if self.__Table[y-1][x-1]!=0:
-            self.__Table[y-1][x-1]=z
+        if self.__Table[y-1][x-1]==0:
+            self.__Table[y-1][x-1]=str(z)
             return True
         else:
             return False
@@ -50,7 +50,7 @@ class table:
                 if td==0:
                     line=line+"|"+"    "
                 else:
-                    line=line+"|"+" +td+ "
+                    line=line+"|"+td
             line=line+"|"
             print(linestr)
             print(line)
@@ -59,14 +59,133 @@ class table:
         for tf in range(self.column):
             foot=foot+" "+str(tf+1).zfill(2)+"  "
         print(foot)
-
-    
-
-    
-    
+    #Method scan the xy return win or not
+    # 方法 判断当前X Y 是否取得胜利
+    def checkWinByXY(self,x,y):
+        #0 degree
+        # 水平
+        player=self.check(x,y)
+        count = 0
+        for xx in range(1,self.column+1):
+            if self.check(xx,y)==player: 
+                count = count+1
+                if count >= 5:
+                    #print("0degree")#debug
+                    return player
+            else:
+                count = 0
+        #90 degree
+        # 垂直
+        count = 0
+        for yy in range(1,self.column+1):
+            #print(yy)#debug
+            #print(x)#debug
+            #print(self.__checkChess(x,yy))#debug
+            if self.check(x,yy)==player: 
+                count = count+1
+                #print(count)#debug
+                if count >= 5:
+                    #print("90degree")#debug
+                    return player
+            else:
+                count = 0
+        #45 degree
+        # 左下到右上
+        count = 0
+        arr=[]
+        ax=x
+        ay=y
+        bx=x
+        by=y
+        while ax<=self.column and ay<=self.column:
+            arr.append(self.check(ax,ay))
+            ax=ax+1
+            ay=ay+1
+        while by>0 and bx>0:
+            bx=bx-1
+            by=by-1
+            arr.insert(0,self.check(bx,by))
+        for aaa in arr:
+            if aaa==player: 
+                # print(aaa)#debug
+                # print(arr)#debug
+                # print(player)#debug
+                count = count+1
+                if count >= 5:
+                    #print("45degree")#debug
+                    return player
+            else:
+                count = 0
+        #-45 degree
+        # 左上到右下
+        count = 0
+        arrr=[]
+        aax=x
+        aay=y
+        bbx=x
+        bby=y
+        while aax>0 and aay<=self.column:
+            arrr.insert(0,self.check(aax,aay))
+            aax=aax-1
+            aay=aay+1
+        while bbx<self.column and bby>1:
+            bbx=bbx+1
+            bby=bby-1
+            arrr.append(self.check(bbx,bby))
+        for aaaa in arrr:
+            if aaaa==player:
+                count = count+1
+                if count >= 5:
+                    #print("-45degree")#debug
+                    return player
+            else:
+                count = 0
+        return False
 
 
 class PVP:
+    
+    def __init__(self,column=20,p1=" 口 ",p2=" @@ "):
+        self.Table=table(column)
+        self.Table.print()
+        self.maxRounds=column*column
+        self.round=0
+        self.winner=0
+        self.currentPlayer=p1
+        while self.winner==0 and self.round!=self.maxRounds:
+            while self.ADD(self.currentPlayer)==False:
+                pass
+            self.round+=1
+            self.Table.print()
+        print("Game Over")
+        if self.winner!=0:
+            print("The winner is %s",self.winner)
+
+    def ADD(self,player):
+        isOK=False
+        while isOK==False:
+            print("输入x")
+            x=int(input())
+            print("输入y")
+            y=int(input())
+            isOK=self.Table.add(x,y,player)
+            if isOK==False:
+                print("请重新输入")
+                pass
+            pass
+        print("player %s chess on %s %s",player,x,y)
+        self.winner=self.Table.checkWinByXY(x,y)
+        
+
+
+
+    
+
+    
+    
+
+
+class PVasdjfljasdlP:
 
     #The chess table array 
     # 棋盘列表（数组）
