@@ -144,7 +144,6 @@ class table:
                 count = 0
         return False
 
-
 class start:
     
     def inputer(self):
@@ -207,6 +206,7 @@ class start:
             pass
         print("player %s chess on %s , %s"%(player,x,y))
         self.winner=self.Table.checkWinByXY(x,y)
+
     def getTable(self):
         return self.Table.getTable()
 

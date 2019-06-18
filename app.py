@@ -2,8 +2,6 @@ import ChessApp
 import random
 #New a instance of ChessAPP
 #创建一个ChessAPP的实例
-#
-#
 # Use 
 #chess=ChessApp.PVP(column=10,p1="  A ",p2="  B ",inp1=inputer,inp2=raninpter,clean=True)
 #default :
