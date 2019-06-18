@@ -41,7 +41,8 @@ class table:
     # 方法_输出棋盘
     def print(self):
         linestr="   "
-        for X in range(self.column):
+        for x in range(self.column):
+            x=x
             linestr=linestr+"+----"
         linestr=linestr+"+"
         for row in range(len(self.__Table)-1,-1,-1):
@@ -191,7 +192,7 @@ class start:
     def ADD(self,player,inp):
         isOK=False
         while isOK==False:
-            arr=inp(self.column,self.Table.getTable,self.currentPlayer,self.p1,self.p2)
+            arr=inp(self.column,self.Table.getTable(),self.currentPlayer,self.p1,self.p2)
             x=arr[0]
             y=arr[1]
             isOK=self.Table.add(x,y,player)
@@ -201,7 +202,8 @@ class start:
             pass
         print("player {%s} chess on {%s} %s"%(player,x,y))
         self.winner=self.Table.checkWinByXY(x,y)
-        
+    def getTable(self):
+        return self.Table.getTable()
 
 
 
