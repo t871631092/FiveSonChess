@@ -1,3 +1,4 @@
+import os
 class table:
     
     #The chess table array 
@@ -153,12 +154,11 @@ class start:
         y=int(input())
         return [x,y]
 
-    def __init__(self,column=20,p1=" 口 ",p2=" @@ ",inp1="inputer",inp2="inputer"):
+    def __init__(self,column=20,p1=" 口 ",p2=" @@ ",inp1="inputer",inp2="inputer",clean=False):
         self.p1=p1
         self.p2=p2
         self.column=column
         self.Table=table(column)
-        self.Table.print()
         self.maxRounds=column*column
         self.round=0
         self.winner=0
@@ -174,7 +174,10 @@ class start:
                 self.inp=self.inp1
             elif self.currentPlayer==p2:
                 self.inp=self.inp2
-            print("Player ",self.currentPlayer+" round")
+            if clean==True:
+                os.system("cls")
+            self.Table.print()
+            print(str(self.round) +": Player ",self.currentPlayer+" round")
             while self.ADD(self.currentPlayer,self.inp)==False:
                 pass
             if self.currentPlayer==p1:
@@ -184,7 +187,9 @@ class start:
                 self.currentPlayer=p1
                 pass
             self.round+=1
-            self.Table.print()
+        if clean==True:
+            os.system("cls")
+        self.Table.print()
         print("Game Over")
         if self.winner!=0:
             print("The winner is %s"%(self.winner))
@@ -197,10 +202,10 @@ class start:
             y=arr[1]
             isOK=self.Table.add(x,y,player)
             if isOK==False:
-                print("请重新输入")
+                print("重新输入:")
                 pass
             pass
-        print("player {%s} chess on {%s} %s"%(player,x,y))
+        print("player %s chess on %s , %s"%(player,x,y))
         self.winner=self.Table.checkWinByXY(x,y)
     def getTable(self):
         return self.Table.getTable()
