@@ -13,7 +13,7 @@ import random
 # inp1=inputer
 # inp2=inputer
 
-def inputer(a):
+def inputer(column,table,currentPlayer,p1,p2):
     print("引用外部函数")
     print("输入x")
     x=int(input())
@@ -21,10 +21,10 @@ def inputer(a):
     y=int(input())
     return [x,y]
 
-def raninpter(a):
+def raninpter(column,table,currentPlayer,p1,p2):
     print("引用随机函数")
-    x = random.randint(1,a)
-    y = random.randint(1,a)
+    x = random.randint(1,column)
+    y = random.randint(1,column)
     return [x,y]
 
 

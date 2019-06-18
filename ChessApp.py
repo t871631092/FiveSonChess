@@ -153,6 +153,8 @@ class start:
         return [x,y]
 
     def __init__(self,column=20,p1=" 口 ",p2=" @@ ",inp1="inputer",inp2="inputer"):
+        self.p1=p1
+        self.p2=p2
         self.column=column
         self.Table=table(column)
         self.Table.print()
@@ -189,7 +191,7 @@ class start:
     def ADD(self,player,inp):
         isOK=False
         while isOK==False:
-            arr=inp(self.column)
+            arr=inp(self.column,self.Table.getTable,self.currentPlayer,self.p1,self.p2)
             x=arr[0]
             y=arr[1]
             isOK=self.Table.add(x,y,player)
