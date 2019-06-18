@@ -145,15 +145,34 @@ class table:
 
 class PVP:
     
-    def __init__(self,column=20,p1=" 口 ",p2=" @@ "):
+    def inputer(self):
+        print("输入x")
+        x=int(input())
+        print("输入y")
+        y=int(input())
+        return [x,y]
+
+    def __init__(self,column=20,p1=" 口 ",p2=" @@ ",inp1="inputer",inp2="inputer"):
+        self.column=column
         self.Table=table(column)
         self.Table.print()
         self.maxRounds=column*column
         self.round=0
         self.winner=0
         self.currentPlayer=p1
+        self.inp1=self.inputer
+        self.inp2=self.inputer
+        if inp1!="inputer":
+            self.inp1=inp1
+        if inp2!="inputer":
+            self.inp2=inp2
         while self.winner==0 and self.round!=self.maxRounds:
-            while self.ADD(self.currentPlayer)==False:
+            if self.currentPlayer==p1:
+                self.inp=self.inp1
+            elif self.currentPlayer==p2:
+                self.inp=self.inp2
+            print("Player ",self.currentPlayer+" round")
+            while self.ADD(self.currentPlayer,self.inp)==False:
                 pass
             if self.currentPlayer==p1:
                 self.currentPlayer=p2
@@ -167,13 +186,12 @@ class PVP:
         if self.winner!=0:
             print("The winner is %s"%(self.winner))
 
-    def ADD(self,player):
+    def ADD(self,player,inp):
         isOK=False
         while isOK==False:
-            print("输入x")
-            x=int(input())
-            print("输入y")
-            y=int(input())
+            arr=inp(self.column)
+            x=arr[0]
+            y=arr[1]
             isOK=self.Table.add(x,y,player)
             if isOK==False:
                 print("请重新输入")
