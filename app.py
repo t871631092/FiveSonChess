@@ -2,8 +2,8 @@ import ChessApp
 import random
 #New a instance of ChessAPP
 #创建一个ChessAPP的实例
-
-#column can be set
+#
+#
 # Use 
 #chess=ChessApp.PVP(column=10,p1="  A ",p2="  B ",inp1=inputer,inp2=raninpter)
 #default :
@@ -28,4 +28,4 @@ def raninpter(a):
     return [x,y]
 
 
-chess=ChessApp.PVP(inp1=raninpter,inp2=inputer)
+chess=ChessApp.start(inp1=raninpter,inp2=inputer)

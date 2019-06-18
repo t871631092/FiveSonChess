@@ -143,7 +143,7 @@ class table:
         return False
 
 
-class PVP:
+class start:
     
     def inputer(self):
         print("输入x")
