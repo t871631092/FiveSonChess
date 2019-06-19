@@ -65,7 +65,7 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
         for Yaxis in range(column):
             if Table.checkbyzero(Xaxis,Yaxis)==0:
                 #set Ai One
-                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a2.AiOneCore(Xaxis,Yaxis,0,3,1,Table,CurrentPlayer,column)
+                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a2.AiOneCore(Xaxis,Yaxis,0,3,2,Table,CurrentPlayer,column)
                 score.set(Xaxis,Yaxis,cellScore)
                 if cellScore>maxScore:
                     maxScore=cellScore
@@ -76,10 +76,12 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
             pass
         pass
     score.print() #debug print
-    if round==1:
+    if round==0:
         x = random.randint(1,column)
         y = random.randint(1,column)
-    print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
+        print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
+    else:
+        print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
 
@@ -96,4 +98,4 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(column=10,inp1=AiZero,inp2=AiOne,p1Name="AiZero",p2Name="AiOne",autoPrint=False)
+chess=ChessApp.start(column=10,inp1=AiOne,inp2=AiOne,p1Name="a1",p2Name="AiOne",autoPrint=False)

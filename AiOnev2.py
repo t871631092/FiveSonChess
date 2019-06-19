@@ -1,5 +1,4 @@
 
-
 def AiOneCore(x,y,z,t,s,table,player,column):
     aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn=x,y,z,t,s,table,player,column
     return scanHplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanHminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanVplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanVminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLDplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLDminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLTplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLTminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)
