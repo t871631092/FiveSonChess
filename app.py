@@ -48,18 +48,37 @@ def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,current
 
 #inputer method
 def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
+    Table=table
+    CurrentPlayer=currentPlayer
+    def scan(x,y,z,t,s,table,player,column):
+        sTable=table
+        sPlayer=player
+        sX=x
+        sY=y
+        sZ=z
+        sS=s
+        if x>=0 and x<column and y>=0 and y<column:
+            if sZ<=t:
+                if table.checkbyzero(sX,sY)==player:
+                    return sS+scan(sX+1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
+                return sS+scan(sX+1,sY,sZ+1,t,sS,sTable,sPlayer,column)
+            else:
+                return sS
+
+        else:
+            return sS
+
     print(tableStr)    
     print("I am AiOne")
-    score=[[0 for cell range(column)] for row range(column)]
+    score=ChessApp.table(20)
     for Xaxis in range(column):
         for Yaxis in range(column):
-            
+            score.set(Xaxis,Yaxis,scan(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column))
             pass
         pass
-
-
-
-
+    score.print()
+    x = random.randint(1,column)
+    y = random.randint(1,column)
     print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
@@ -77,4 +96,4 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(inp1=AiZero,inp2=AiZero,p1Name="AiZero-1",p2Name="AiZero-2",autoPrint=False)
+chess=ChessApp.start(inp1=AiZero,inp2=AiOne,p1Name="AiZero-1",p2Name="AiOne",autoPrint=False)

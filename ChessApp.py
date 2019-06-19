@@ -27,7 +27,6 @@ class table:
     # 方法_创建棋盘
     def __createTable(self):
         self.__Table=[[0 for cell in range(self.column) ] for row in range(self.column)]
-        print("初始化棋盘")
 
     ##Public
     # 公共方法
@@ -48,13 +47,18 @@ class table:
     #Method_chess when success return |true|
     # 方法_在输入坐标位置下棋，成功返回true 失败返回false
     def set(self,x,y,z):
-        self.__Table[y-1][x-1]=str(z)
+        self.__Table[y][x]=str(z)
 
     #Method_Check chess info return | 0 / A / B | 
     # 方法_返回输入坐标棋子信息 返回 0 A B
     def check(self,x,y):
         return self.__Table[y-1][x-1]
-    
+
+    #Method_Check chess info return | 0 / A / B | 
+    # 方法_返回输入坐标棋子信息 返回 0 A B
+    def checkbyzero(self,x,y):
+        return self.__Table[y][x]
+
     #Methos_Get Print string
     # 方法_输出棋盘显示的字符串
     def printStr(self):
