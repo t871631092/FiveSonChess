@@ -57,14 +57,10 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
         sY=y
         sZ=z
         sS=s
-        if x>=0 and x<column and y>=0 and y<column:
-            if sZ<=t:
-                if table.checkbyzero(sX,sY)==player:
-                    return sS+scan(sX+1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
-                return sS+scan(sX+1,sY,sZ+1,t,sS,sTable,sPlayer,column)
-            else:
-                return sS
-
+        if x>=0 and x<column and y>=0 and y<column and sZ<=t:
+            if table.checkbyzero(sX,sY)==player:
+                return sS+scan(sX+1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
+            return sS+scan(sX+1,sY,sZ+1,t,sS,sTable,sPlayer,column)
         else:
             return sS
 
