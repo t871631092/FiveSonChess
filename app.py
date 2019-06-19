@@ -49,6 +49,7 @@ def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,current
 
 
 import AiOne as a1
+import AiOnev2 as a2
 #inputer method
 def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
     Table=table
@@ -64,7 +65,7 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
         for Yaxis in range(column):
             if Table.checkbyzero(Xaxis,Yaxis)==0:
                 #set Ai One
-                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a1.AiOneCore(Xaxis,Yaxis,0,0,1,Table,CurrentPlayer,column)
+                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a2.AiOneCore(Xaxis,Yaxis,0,3,1,Table,CurrentPlayer,column)
                 score.set(Xaxis,Yaxis,cellScore)
                 if cellScore>maxScore:
                     maxScore=cellScore
@@ -95,4 +96,4 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(column=10,inp1=inputer,inp2=AiOne,p1Name="AiZero-1",p2Name="AiOne",autoPrint=False)
+chess=ChessApp.start(column=10,inp1=AiZero,inp2=AiOne,p1Name="AiZero",p2Name="AiOne",autoPrint=False)
