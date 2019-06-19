@@ -45,6 +45,11 @@ class table:
         else:
             return False
 
+    #Method_chess when success return |true|
+    # 方法_在输入坐标位置下棋，成功返回true 失败返回false
+    def set(self,x,y,z):
+        self.__Table[y-1][x-1]=str(z)
+
     #Method_Check chess info return | 0 / A / B | 
     # 方法_返回输入坐标棋子信息 返回 0 A B
     def check(self,x,y):
@@ -202,14 +207,15 @@ class table:
 # type : method
 # Argument :
 # -column             ---type:int
-# -table              ---type:list
+# -table              ---type:instance
+# -tableLsit          ---type:list
+# -tableStr           ---type:string
 # -lastChess          ---type:list
 # -currentPlayer      ---type:string
 # -p1                 ---type:string
 # -p2                 ---type:string
 # -currentPlayerName  ---type:string
 # -round              ---type:int
-# -tableStr           ---type:string
 # Return [x,y]        ---x axis , y axis
 
 # for example
@@ -277,7 +283,7 @@ class start:
     def ADD(self,player,inp,autoPrint):
         isOK=False
         while isOK==False:
-            arr=inp(self.column,self.Table.getTable(),self.lastChess,self.currentPlayer,self.p1,self.p2,self.currentPlayerName,self.round,self.Table.printStr())
+            arr=inp(self.column,self.Table,self.Table.getTable(),self.Table.printStr(),self.lastChess,self.currentPlayer,self.p1,self.p2,self.currentPlayerName,self.round)
             x=arr[0]
             y=arr[1]
             isOK=self.Table.add(x,y,player)

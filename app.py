@@ -1,13 +1,10 @@
-import ChessApp
-import random
-
-
 ##inputer()
 # type : method
 # Argument :
 # -column             ---type:int
-# -table              ---type:list
-# -lastChess          ---type:list
+# -table              ---type:instance    see  ##table
+# -tableList          ---type:list
+# -lastChess          ---type:list     x=lastChess[0] y=lastChess[1]
 # -currentPlayer      ---type:string
 # -p1                 ---type:string
 # -p2                 ---type:string
@@ -16,28 +13,54 @@ import random
 # -tableStr           ---type:string
 # Return [x,y]        ---x axis , y axi
 
-#inputer method
-def inputer(column,table,lastChess,currentPlayer,p1,p2,currentPlayerName,round,tableStr):
-    print("引用外部函数")
+##table
+# Method :
+#  getTable()         : | return type:list -- list of checkerboard
+#  add(x,y,z)         : x = x axis, y = y axis, z = the string of the chess name | return type:bool --when chessing success return true / fail return false 
+#  check(x,y)         : x = x axis, y = y axis | return the string of the current x,y in checkerboard
+#  printStr()         : return the string of Processing checkerboard-list
+#  ptint()            : print the Processing checkerboard-list
+#  checkWinByXY(x,y)  : x = x axis, y = y axis | return false/string --return string of position if the input position player is win
+
+import ChessApp
+import random
+
+#inputer method-Manual input x,y
+def inputer(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
+    print(tableStr)
+    print("Last chess on [ "+str(lastChess[0])+","+str(lastChess[1])+" ]")
+    print("引用外部函数 : 手动输入")
     print("输入x")
     x=int(input())
     print("输入y")
     y=int(input())
+    print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
-#inputer method
-def AiZero(column,table,lastChess,currentPlayer,p1,p2,currentPlayerName,round,tableStr):
-    print(tableStr)
+#inputer method-random input x,y
+def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
+    print(tableStr)    
+    print("引用外部函数 : 随机输入")
     x = random.randint(1,column)
     y = random.randint(1,column)
     print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
 #inputer method
-def AiOne(column,table,lastChess,currentPlayer,p1,p2,currentPlayerName,round,tableStr):
+def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
+    print(tableStr)    
     print("I am AiOne")
-    x = random.randint(1,column)
-    y = random.randint(1,column)
+    score=[[0 for cell range(column)] for row range(column)]
+    for Xaxis in range(column):
+        for Yaxis in range(column):
+            
+            pass
+        pass
+
+
+
+
+    print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
 
