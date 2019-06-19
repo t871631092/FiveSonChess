@@ -46,30 +46,97 @@ def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,current
     print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
+
+def scanHplus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanHplus(sX+1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanHplus(sX+1,sY,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanHminus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanHminus(sX-1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanHminus(sX-1,sY,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanVplus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanVplus(sX,sY+1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanVplus(sX,sY+1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanVminus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanVminus(sX,sY-1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanVminus(sX,sY-1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanLDplus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanLDplus(sX+1,sY+1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanLDplus(sX+1,sY+1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanLDminus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanLDminus(sX-1,sY-1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanLDminus(sX-1,sY-1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanLTplus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanLTplus(sX+1,sY-1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanLTplus(sX+1,sY-1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+def scanLTminus(x,y,z,t,s,table,player,column):
+    sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
+    if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
+        if sTable.checkbyzero(sX,sY)==player:
+            return scanLTminus(sX-1,sY+1,sZ+1,t,sS+1,sTable,sPlayer,column)
+        else:
+            return scanLTminus(sX-1,sY+1,sZ+1,t,sS,sTable,sPlayer,column)
+    else:
+        return sS
+
+
 #inputer method
 def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
     Table=table
     CurrentPlayer=currentPlayer
-    def scan(x,y,z,t,s,table,player,column):
-        sTable=table
-        sPlayer=player
-        sX=x
-        sY=y
-        sZ=z
-        sS=s
-        if x>=0 and x<column and y>=0 and y<column and sZ<=t:
-            if table.checkbyzero(sX,sY)==player:
-                return sS+scan(sX+1,sY,sZ+1,t,sS+1,sTable,sPlayer,column)
-            return sS+scan(sX+1,sY,sZ+1,t,sS,sTable,sPlayer,column)
-        else:
-            return sS
+
 
     print(tableStr)    
     print("I am AiOne")
-    score=ChessApp.table(20)
+    score=ChessApp.table(column)
     for Xaxis in range(column):
         for Yaxis in range(column):
-            score.set(Xaxis,Yaxis,scan(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column))
+            if Table.checkbyzero(Xaxis,Yaxis)==0:
+                cellScore=scanHplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanHminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanVplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanVminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanLDplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanLDminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanLTplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+scanLTminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)
+                score.set(Xaxis,Yaxis,cellScore)
+            else:
+                score.set(Xaxis,Yaxis,0)
             pass
         pass
     score.print()
@@ -92,4 +159,4 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(inp1=AiZero,inp2=AiOne,p1Name="AiZero-1",p2Name="AiOne",autoPrint=False)
+chess=ChessApp.start(column=10,inp1=AiOne,inp2=AiOne,p1Name="AiZero-1",p2Name="AiOne",autoPrint=False)
