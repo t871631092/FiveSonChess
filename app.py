@@ -98,4 +98,4 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(column=10,inp1=AiOne,inp2=AiOne,p1Name="a1",p2Name="AiOne",autoPrint=False)
+chess=ChessApp.start(column=20,inp1=AiOne,inp2=AiOne,p1Name="a1",p2Name="AiOne",autoPrint=False)
