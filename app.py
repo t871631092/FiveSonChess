@@ -47,9 +47,7 @@ def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,current
     return [x,y]
 
 
-
-import AiOne as a1
-import AiOnev2 as a2
+from AiOne import *
 #inputer method
 def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
     Table=table
@@ -65,7 +63,7 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
         for Yaxis in range(column):
             if Table.checkbyzero(Xaxis,Yaxis)==0:
                 #set Ai One
-                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a2.AiOneCore(Xaxis,Yaxis,0,3,2,Table,CurrentPlayer,column)
+                cellScore=StraightScan(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+OnceScan(Xaxis,Yaxis,0,3,2,Table,CurrentPlayer,column)
                 score.set(Xaxis,Yaxis,cellScore)
                 if cellScore>maxScore:
                     maxScore=cellScore
