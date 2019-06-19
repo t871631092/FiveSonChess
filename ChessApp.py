@@ -1,3 +1,15 @@
+# Class table
+# use to create the table-instance for the gobang
+# Argument :
+# column  -----[int] (necessary) set the column of the gobang checkerboard
+# Method :
+#  getTable()         : | return type:list -- list of checkerboard
+#  add(x,y,z)         : x = x axis, y = y axis, z = the string of the chess name | return type:bool --when chessing success return true / fail return false 
+#  check(x,y)         : x = x axis, y = y axis | return the string of the current x,y in checkerboard
+#  printStr()         : return the string of Processing checkerboard-list
+#  ptint()            : print the Processing checkerboard-list
+#  checkWinByXY(x,y)  : x = x axis, y = y axis | return false/string --return string of position if the input position player is win
+
 import os
 class table:
     
@@ -38,6 +50,34 @@ class table:
     def check(self,x,y):
         return self.__Table[y-1][x-1]
     
+    #Methos_Get Print string
+    # 方法_输出棋盘显示的字符串
+    def printStr(self):
+        tableStr=""
+        linestr="   "
+        for x in range(self.column):
+            x=x
+            linestr=linestr+"+----"
+        linestr=linestr+"+"
+        for row in range(len(self.__Table)-1,-1,-1):
+            line=str(row+1).zfill(2)+" "
+            for td in self.__Table[row]:
+                if td==0:
+                    line=line+"|"+"    "
+                else:
+                    line=line+"|"+td
+            line=line+"|"
+            tableStr=tableStr+linestr+os.linesep
+            tableStr=tableStr+line+os.linesep
+        tableStr=tableStr+linestr+os.linesep
+        foot="    "
+        for tf in range(self.column):
+            foot=foot+" "+str(tf+1).zfill(2)+"  "
+        tableStr=tableStr+foot+os.linesep
+        return tableStr
+
+
+
     #Method_Print the table
     # 方法_输出棋盘
     def print(self):
@@ -144,6 +184,35 @@ class table:
                 count = 0
         return False
 
+
+#Create the game instance
+# Argument :
+# column      default:20          type:int     ----- [int] (necessary) set the column of the gobang checkerboard
+# p1          default:" 口 "      type:string  ----- set the chess name of player 1 in the checkerboard
+# p2          default:" @@ "      type:string  ----- set the chess name of player 2 in the checkerboard
+# p1Name      default:"p1"        type:string  ----- set the player 1 name
+# p2Name      default:"p2"        type:string  ----- set the player 2 name
+# inp1        default:"inputer"   type:Method  ----- set the player 1 input method see ##inputer
+# inp2        default:"inputer"   type:Method  ----- set the player 1 input method see ##inputer
+# clean       default:False       type:bool    ----- set whether to clear the last print in console/terminal 
+# autoPrint   default:True        type:bool    ----- set whether to print in the function 
+# Method :
+
+##inputer()
+# type : method
+# Argument :
+# -column             ---type:int
+# -table              ---type:list
+# -lastChess          ---type:list
+# -currentPlayer      ---type:string
+# -p1                 ---type:string
+# -p2                 ---type:string
+# -currentPlayerName  ---type:string
+# -round              ---type:int
+# -tableStr           ---type:string
+# Return [x,y]        ---x axis , y axis
+# 
+
 class start:
     
     def inputer(self):
@@ -153,7 +222,8 @@ class start:
         y=int(input())
         return [x,y]
 
-    def __init__(self,column=20,p1=" 口 ",p2=" @@ ",inp1="inputer",inp2="inputer",clean=False):
+    def __init__(self,column=20,p1=" 口 ",p2=" @@ ",p1Name="p1",p2Name="p2",inp1="inputer",inp2="inputer",clean=False,autoPrint=True):
+        self.lastChess=0
         self.p1=p1
         self.p2=p2
         self.column=column
@@ -164,20 +234,24 @@ class start:
         self.currentPlayer=p1
         self.inp1=self.inputer
         self.inp2=self.inputer
+        self.currentPlayerName=""
         if inp1!="inputer":
             self.inp1=inp1
         if inp2!="inputer":
             self.inp2=inp2
         while self.winner==0 and self.round!=self.maxRounds:
             if self.currentPlayer==p1:
+                self.currentPlayerName=p1Name
                 self.inp=self.inp1
             elif self.currentPlayer==p2:
+                self.currentPlayerName=p2Name
                 self.inp=self.inp2
             if clean==True:
                 os.system("cls")
-            self.Table.print()
-            print(str(self.round) +": Player ",self.currentPlayer+" round")
-            while self.ADD(self.currentPlayer,self.inp)==False:
+            if autoPrint==True:
+                self.Table.print()
+                print(str(self.round) +": Player ",self.currentPlayerName+" round")
+            while self.ADD(self.currentPlayer,self.inp,autoPrint)==False:
                 pass
             if self.currentPlayer==p1:
                 self.currentPlayer=p2
@@ -193,10 +267,10 @@ class start:
         if self.winner!=0:
             print("The winner is %s"%(self.winner))
 
-    def ADD(self,player,inp):
+    def ADD(self,player,inp,autoPrint):
         isOK=False
         while isOK==False:
-            arr=inp(self.column,self.Table.getTable(),self.currentPlayer,self.p1,self.p2)
+            arr=inp(self.column,self.Table.getTable(),self.lastChess,self.currentPlayer,self.p1,self.p2,self.currentPlayerName,self.round,self.Table.printStr())
             x=arr[0]
             y=arr[1]
             isOK=self.Table.add(x,y,player)
@@ -204,7 +278,9 @@ class start:
                 print("重新输入:")
                 pass
             pass
-        print("player %s chess on %s , %s"%(player,x,y))
+        self.lastChess=[x,y]
+        if autoPrint==True:
+            print("player %s chess on %s , %s"%(player,x,y))
         self.winner=self.Table.checkWinByXY(x,y)
 
     def getTable(self):
