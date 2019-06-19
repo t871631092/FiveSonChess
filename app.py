@@ -1,3 +1,5 @@
+
+
 ##inputer()
 # type : method
 # Argument :
@@ -22,8 +24,29 @@
 #  ptint()            : print the Processing checkerboard-list
 #  checkWinByXY(x,y)  : x = x axis, y = y axis | return false/string --return string of position if the input position player is win
 
+##############################################################################################################################
+#                                             e   x   a   m   p   l   e                                                      #
+##############################################################################################################################
+#inputer method example
+def Example(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
+    print(tableStr)    
+    print("I am Example Inputer")
+    ##################################################
+    #### Put your code here 
+    #you can use (column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round)
+    #you must Assignment to x and y  ;like x=1 y=1
+    #
+    ##################################################
+    x=1
+    y=1
+    print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
+    return [x,y]
+
+
+
+
+
 import ChessApp
-import random
 
 #inputer method-Manual input x,y
 def inputer(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
@@ -37,6 +60,8 @@ def inputer(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,curren
     print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
 
+
+import random
 #inputer method-random input x,y
 def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
     print(tableStr)    
@@ -81,6 +106,7 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
     else:
         print(str(round)+" : "+currentPlayerName+" chess on [ "+str(x)+","+str(y)+" ]")
     return [x,y]
+
 
 
 #Create the game instance
