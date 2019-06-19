@@ -63,7 +63,8 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
     for Xaxis in range(column):
         for Yaxis in range(column):
             if Table.checkbyzero(Xaxis,Yaxis)==0:
-                cellScore=a1.scanHplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanHminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanVplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanVminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanLDplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanLDminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanLTplus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)+a1.scanLTminus(Xaxis,Yaxis,0,4,0,Table,CurrentPlayer,column)
+                #set Ai One
+                cellScore=a1.AiOneCore(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+a1.AiOneCore(Xaxis,Yaxis,0,0,1,Table,CurrentPlayer,column)
                 score.set(Xaxis,Yaxis,cellScore)
                 if cellScore>maxScore:
                     maxScore=cellScore
@@ -73,7 +74,7 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
                 score.set(Xaxis,Yaxis,0)
             pass
         pass
-    score.print()
+    score.print() #debug print
     if round==1:
         x = random.randint(1,column)
         y = random.randint(1,column)

@@ -1,4 +1,13 @@
 
+
+def AiOneCore(x,y,z,t,s,table,player,column):
+    aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn=x,y,z,t,s,table,player,column
+    return scanHplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanHminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanVplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanVminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLDplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLDminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLTplus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)+scanLTminus(aiX,aiY,aiZ,aiT,aiS,aiTable,aiPlayer,aiColumn)
+
+
+
+
+
 def scanHplus(x,y,z,t,s,table,player,column):
     sTable,sPlayer,sX,sY,sZ,sS=table,player,x,y,z,s
     if sX>=0 and sX<column and sY>=0 and sY<column and sZ<=t:
