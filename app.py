@@ -78,8 +78,10 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
     Table=table
     if currentPlayer==p1:
         CurrentPlayer=p2
+        AgainstPlayer=p1
     else:
         CurrentPlayer=p1
+        AgainstPlayer=p2
     maxScore=0
     print(tableStr)    
     print("I am AiOne")
@@ -88,10 +90,12 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
         for Yaxis in range(column):
             if Table.checkbyzero(Xaxis,Yaxis)==0:
                 #set Ai One
-                cellScore=StraightScan(Xaxis,Yaxis,0,3,0,Table,CurrentPlayer,column)+OnceScan(Xaxis,Yaxis,0,3,2,Table,CurrentPlayer,column)
-                score.set(Xaxis,Yaxis,cellScore)
-                if cellScore>maxScore:
-                    maxScore=cellScore
+                cellScore=[]
+                cellScore.append(OnceScan(Xaxis,Yaxis,0,3,1,Table,CurrentPlayer,column))
+                cellScore.append(OnceScan(Xaxis,Yaxis,0,3,2,Table,AgainstPlayer,column))
+                score.set(Xaxis,Yaxis,max(cellScore))
+                if max(cellScore)>maxScore:
+                    maxScore=max(cellScore)
                     x=Xaxis+1
                     y=Yaxis+1
             else:
@@ -122,4 +126,5 @@ def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentP
 # autoPrint   default:True        type:bool    ----- set whether to print in the function 
 # Method :
 
-chess=ChessApp.start(column=20,inp1=AiOne,inp2=AiOne,p1Name="a1",p2Name="AiOne",autoPrint=False)
+
+chess=ChessApp.start(column=20,inp1=AiZero,inp2=AiOne,p1Name="a1",p2Name="AiOne",autoPrint=False)
