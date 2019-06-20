@@ -1,16 +1,11 @@
 import os
 import random
 
-time=0
-player=1
+time = 0
+player = 1
 win=""
 #method - pring chess table
 def print_Table(chesstable):
-#    achieve table show 1
-#    for row in range(len(chesstable),0,-1):
-#        print(str(chesstable[row-1])+"第"+str(row)+"行")
-
-#    achieve table show 2
     for row in range(len(chesstable)-1,-1,-1):
         line=str(row+1).zfill(2)+" "
         for td in chesstable[row]:
@@ -19,7 +14,7 @@ def print_Table(chesstable):
             elif td==1:
                 line=line+"|"+" 口 "
             elif td==2:
-                line=line+"|"+" @@ " #在🐴？
+                line=line+"|"+" @@ "
         line=line+"|"
         print("   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+")
         print(line)
@@ -213,7 +208,7 @@ def checkwin(x,y):
 
 
 #create chess table
-chess_table=[]
+chess_table = []
 print("初始化棋盘")
 while len(chess_table) <20:
      chess_table.append([0 for x in range(20)])
@@ -222,7 +217,4 @@ print_Table(chess_table)
 
 
 #strat the game by
-#startPVP()
-#startEVE()
-
 startPVE()
