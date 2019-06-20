@@ -4,7 +4,7 @@
 # column  -----[int] (necessary) set the column of the gobang checkerboard
 # Method :
 #  getTable()         : | return type:list -- list of checkerboard
-#  add(x,y,z)         : x = x axis, y = y axis, z = the string of the chess name | return type:bool --when chessing success return true / fail return false 
+#  add(x,y,z)         : x = x axis, y = y axis, z = the string of the chess name | return type:bool --when chessing success return true / fail return false
 #  check(x,y)         : x = x axis, y = y axis | return the string of the current x,y in checkerboard
 #  printStr()         : return the string of Processing checkerboard-list
 #  ptint()            : print the Processing checkerboard-list
@@ -203,8 +203,8 @@ class table:
 # p2Name      default:"p2"        type:string  ----- set the player 2 name
 # inp1        default:"inputer"   type:Method  ----- set the player 1 input method see ##inputer
 # inp2        default:"inputer"   type:Method  ----- set the player 1 input method see ##inputer
-# clean       default:False       type:bool    ----- set whether to clear the last print in console/terminal 
-# autoPrint   default:True        type:bool    ----- set whether to print in the function 
+# clean       default:False       type:bool    ----- set whether to clear the last print in console/terminal
+# autoPrint   default:True        type:bool    ----- set whether to print in the function
 # Method :
 
 ##inputer()
