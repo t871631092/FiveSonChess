@@ -10,7 +10,7 @@ There are some prerequisite for the GUI_v1:
 1. Numpy
 2. matplotlib
 
-**Guide to run the sanity test**: python `SanityTests/GUI_test.py`
+**Guide to run the sanity test**: python `Test/test_GUI.py`
 
 Left click in the window to choose a place to place your chess
 
