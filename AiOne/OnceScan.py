@@ -1,20 +1,15 @@
 def OnceScan(x, y, z, t, s, table, player, column):
     aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn = x, y, z, t, s, table, player, column
-    return scanHplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn) + scanHminus(aiX, aiY, aiZ, aiT, aiS,
-                                                                                        aiTable, aiPlayer,
-                                                                                        aiColumn) + scanVplus(aiX, aiY,
-                                                                                                              aiZ, aiT,
-                                                                                                              aiS,
-                                                                                                              aiTable,
-                                                                                                              aiPlayer,
-                                                                                                              aiColumn) + scanVminus(
-        aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn) + scanLDplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer,
-                                                                           aiColumn) + scanLDminus(aiX, aiY, aiZ, aiT,
-                                                                                                   aiS, aiTable,
-                                                                                                   aiPlayer,
-                                                                                                   aiColumn) + scanLTplus(
-        aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn) + scanLTminus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer,
-                                                                            aiColumn)
+    score = []
+    score.append(scanHplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanHminus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanVplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanVminus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanLDplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanLDminus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanLTplus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    score.append(scanLTminus(aiX, aiY, aiZ, aiT, aiS, aiTable, aiPlayer, aiColumn))
+    return max(score)
 
 
 def scanHplus(x, y, z, t, s, table, player, column):
