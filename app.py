@@ -72,7 +72,7 @@ def AiZero(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,current
     return [x,y]
 
 
-from AiOne import *
+from AiOne import OnceScan
 #inputer method
 def AiOne(column,table,tableList,tableStr,lastChess,currentPlayer,p1,p2,currentPlayerName,round):
     Table=table
