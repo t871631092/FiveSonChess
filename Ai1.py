@@ -83,6 +83,45 @@ def analyze_vector(vector): # Return score for vector
                 score['black'] += black5s[i]
     return score
 
+def firststep():
+    x = 8
+    y = 8
+    return [x, y]
+
+#Check if there are any chess around 检查周围是否存在棋子
+def checkaround(tablelist,column,x,y):
+    direction = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1), (1, -1)], [(-1, -1), (1, 1)]]
+    for axis in direction:
+            for (xdirection, ydirection) in axis:
+                if xdirection != 0 and (x + xdirection < 0 or x + xdirection >= column):
+                    break
+
+                if ydirection != 0 and (y + ydirection < 0 or y + ydirection >= column):
+                    break
+
+                if tablelist[x + xdirection][y + ydirection] != colour.empty:
+                    return True
+
+                if xdirection != 0 and (x + xdirection * 2 < 0 or y + xdirection * 2 >= column):
+                    break
+
+                if ydirection != 0 and (x + ydirection * 2 < 0 or y + ydirection * 2 >= column):
+                    break
+
+                if tablelist()[x + ydirection * 2][y + xdirection * 2] != colour.empty:
+                    return True
+    return False
+
+
+
+
+
+
+
+
+
+
+
 # from main import chess_table
 
 
