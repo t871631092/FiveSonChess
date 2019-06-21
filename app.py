@@ -126,4 +126,4 @@ def AiOne(column, table, tableList, tableStr, lastChess, currentPlayer, p1, p2, 
 # Method :
 
 
-chess = ChessApp.start(column=20, inp1=AiZero, inp2=AiOne, p1Name="a1", p2Name="AiOne", autoPrint=False)
+chess = ChessApp.start(column=20, inp1=inputer, inp2=AiOne, p1Name="a1", p2Name="AiOne", autoPrint=False)

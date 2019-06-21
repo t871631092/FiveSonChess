@@ -115,14 +115,14 @@ class table:
     def checkWinByXY(self, x, y):
         # 0 degree
         # 水平
-        player = self.check(x, y)
+        player= self.check(x,y)
         count = 0
         for xx in range(1, self.column + 1):
             if self.check(xx, y) == player:
                 count = count + 1
                 if count >= 5:
                     # print("0degree")#debug
-                    return player
+                    return True
             else:
                 count = 0
         # 90 degree
@@ -137,7 +137,7 @@ class table:
                 # print(count)#debug
                 if count >= 5:
                     # print("90degree")#debug
-                    return player
+                    return True
             else:
                 count = 0
         # 45 degree
@@ -164,7 +164,7 @@ class table:
                 count = count + 1
                 if count >= 5:
                     # print("45degree")#debug
-                    return player
+                    return True
             else:
                 count = 0
         # -45 degree
@@ -188,7 +188,7 @@ class table:
                 count = count + 1
                 if count >= 5:
                     # print("-45degree")#debug
-                    return player
+                    return True
             else:
                 count = 0
         return False
@@ -239,7 +239,7 @@ class start:
         y = int(input())
         return [x, y]
 
-    def __init__(self, column=20, p1=" 口 ", p2=" @@ ", p1Name="p1", p2Name="p2", inp1="inputer", inp2="inputer",clean=False, autoPrint=True):
+    def __init__(self, column=20, p1=" 口 ", p2=" @@ ", p1Name="p1", p2Name="p2", inp1="inputer", inp2="inputer",clean=False, autoPrint=True,checkwin="checkwinbyxy"):
         self.lastChess = [0, 0]
         self.p1 = p1
         self.p2 = p2
@@ -251,7 +251,10 @@ class start:
         self.currentPlayer = p1
         self.inp1 = self.inputer
         self.inp2 = self.inputer
+        self.checkwin = self.Table.checkWinByXY
         self.currentPlayerName = ""
+        if checkwin!= "checkwinbyxy":
+            self.checkwin=checkwin
         if inp1 != "inputer":
             self.inp1 = inp1
         if inp2 != "inputer":
@@ -299,7 +302,8 @@ class start:
         self.lastChess = [x, y]
         if autoPrint == True:
             print("player %s chess on %s , %s" % (player, x, y))
-        self.winner = self.Table.checkWinByXY(x, y)
+        if self.Table.checkWinByXY(x, y)==True:
+            self.winner =self.Table.check(x, y)
 
     def getTable(self):
         return self.Table.getTable()
