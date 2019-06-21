@@ -232,15 +232,14 @@ class table:
 
 class start:
 
-    def inputer(self):
+    def inputer(self,column, table, tableList, tableStr, lastChess, currentPlayer, p1, p2, currentPlayerName, round):
         print("输入x")
         x = int(input())
         print("输入y")
         y = int(input())
         return [x, y]
 
-    def __init__(self, column=20, p1=" 口 ", p2=" @@ ", p1Name="p1", p2Name="p2", inp1="inputer", inp2="inputer",
-                 clean=False, autoPrint=True):
+    def __init__(self, column=20, p1=" 口 ", p2=" @@ ", p1Name="p1", p2Name="p2", inp1="inputer", inp2="inputer",clean=False, autoPrint=True):
         self.lastChess = [0, 0]
         self.p1 = p1
         self.p2 = p2
