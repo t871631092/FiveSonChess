@@ -89,34 +89,46 @@ def firststep():
     return [x, y]
 
 #Check if there are any chess around 检查周围是否存在棋子
+#True means that there are chess around here.
 def checkaround(tablelist,column,x,y):
-    direction = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1), (1, -1)], [(-1, -1), (1, 1)]]
-    for axis in direction:
-            for (xdirection, ydirection) in axis:
-                if xdirection != 0 and (x + xdirection < 0 or x + xdirection >= column):
+    offset = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1), (1, -1)], [(-1, -1), (1, 1)]]
+    for axis in offset:
+            for (xoffset, yoffset) in axis:
+                if xoffset != 0 and (x + xoffset < 0 or x + xoffset >= column):
+                    break
+                if yoffset != 0 and (y + yoffset < 0 or y + yoffset >= column):
                     break
 
-                if ydirection != 0 and (y + ydirection < 0 or y + ydirection >= column):
-                    break
-
-                if tablelist[x + xdirection][y + ydirection] != colour.empty:
+                if tablelist[x + xoffset][y + yoffset] != colour.empty:
                     return True
 
-                if xdirection != 0 and (x + xdirection * 2 < 0 or y + xdirection * 2 >= column):
+                if xoffset != 0 and (x + xoffset * 2 < 0 or y + xoffset * 2 >= column):
                     break
 
-                if ydirection != 0 and (x + ydirection * 2 < 0 or y + ydirection * 2 >= column):
+                if yoffset != 0 and (x + yoffset * 2 < 0 or y + yoffset * 2 >= column):
                     break
 
-                if tablelist()[x + ydirection * 2][y + xdirection * 2] != colour.empty:
+                if tablelist[x + yoffset * 2][y + xoffset * 2] != colour.empty:
                     return True
     return False
 
+def axiscount(x,y,xoffset,yoffset,column,count,tablelist,currentPlayer):
+    count = 0
+    for time in range(1,5):
+        if xoffset != 0 and (x + xoffset * time < 0 or x + xoffset * time >= column):
+            break
+        if yoffset != 0 and (y + yoffset * time < 0 or y + yoffset * time >= column):
+            break
+        if tablelist[x + xoffset * time][y + yoffset * time] == currentPlayer:
+            count += 1
+        else:
+            break
+    return count
 
 
 
 
-
+print('在🐴')
 
 
 
