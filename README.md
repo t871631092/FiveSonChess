@@ -18,4 +18,4 @@ Left click in the window to choose a place to place your chess
 
 #### to be continued……
 
-#### writing by [liubai01](https://github.com/liubai01)  [Zrx](https://github.com/Zrxrxrx)  [kqq](https://github.com/t871631092)
+#### writing by [liubai01](https://github.com/liubai01)    [Zrx](https://github.com/Zrxrxrx)    [kqq](https://github.com/t871631092)
