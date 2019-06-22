@@ -76,6 +76,10 @@ class table:
             for td in self.__Table[row]:
                 if td == 0:
                     line = line + "|" + "    "
+                elif td == 1:
+                    line = line + "|" + " 口 "
+                elif td == 2:
+                    line = line + "|" + " @@ "
                 else:
                     line = line + "|" + td
             line = line + "|"
