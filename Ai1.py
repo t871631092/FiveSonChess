@@ -112,7 +112,7 @@ def checkaround(tablelist,column,x,y):
                     return True
     return False
 
-def axiscount(x,y,xoffset,yoffset,column,count,tablelist,currentPlayer):
+def axiscount(x,y,xoffset,yoffset,column,tablelist,currentPlayer):
     count = 0
     for time in range(1,5):
         if xoffset != 0 and (x + xoffset * time < 0 or x + xoffset * time >= column):
@@ -125,31 +125,85 @@ def axiscount(x,y,xoffset,yoffset,column,count,tablelist,currentPlayer):
             break
     return count
 
+def subset(small, b): # True means a is a subset of b / a是b的子集
+    for i in range(len(b)-len(a)+1):
+        for j in range(len(a)):
+            if b[i+j] != a[j]:
+                break
+        else:
+            return True
+    return False
+
+def five(currentPlayer,x,y,tablelist):
+    offset = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1), (1, -1)], [(-1, -1), (1, 1)]]
+    for axis in offset:
+        chesscount = 1
+        for (xoffset, yoffset) in axis:
+            chesscount += axiscount(x, y, xoffset, yoffset, currentPlayer, tablelist)
+            if chesscount >= 5:
+                return True
+    return False
+
+def opponentfive(currentPlayer,column):
+    vectora = []
+
+    for a in range(column):
+        vectora.append(tablelist[a])
+
+    for a in range(column):
+        vectora.append([tablelist[a][a] for a in range(column)])
+
+    vectora.append([tablelist[x][x] for x in range(column)])
+    for a in range(1, column - 4):
+        v = [tablelist[x][x - a] for x in range(a, column)]
+        vectora.append(v)
+        v = [tablelist[y - a][y] for y in range(a, column)]
+        vectora.append(v)
+
+        vectora.append([tablelist[x][column - x - 1] for x in range(column)])
+    for a in range(4, column - 1):
+        v = [tablelist[x][a - x] for x in range(a, -1, -1)]
+        vectora.append(v)
+        v = [tablelist[x][column - x + column - a - 2] for x in range(column - a - 1, column)]
+        vectora.append(v)
+
+        for vector in vectors:
+            t = enumcolour(vector)
+            if currentPlayer == colour.blcak:
+                for chess in white5:
+                    if subset(chess, t):
+                        return True
+            if currentPlayer == colour.white:
+                for chess in black5:
+                    if subset(chess, t):
+                        return True
+        return False
+
 def evaluate(column,tablelist,currentPlayer):
-    vector = []
+    vectora = []
     tablescore = 0
     for xx in range(column):
-        vector.append(tablelist[xx])
+        vectora.append(tablelist[xx])
     for yy in range(column):
-        vector.append([tablelist[xx][yy] for xx in range(column)])
+        vectora.append([tablelist[xx][yy] for xx in range(column)])
 
-        vector.append([tablelist[x][x] for x in range(column)])
+        vectora.append([tablelist[x][x] for x in range(column)])
         for xx in range(1, column - 4):
             v = [tablelist[x][x - xx] for x in range(xx, column)]
-            vector.append(v)
+            vectora.append(v)
             v = [tablelist[y - xx][y] for y in range(xx, column)]
-            vector.append(v)
+            vectora.append(v)
 
-        vector.append([tablelist()[x][column - x - 1] for x in range(column)])
+        vectora.append([tablelist()[x][column - x - 1] for x in range(column)])
 
         for xx in range(4, column - 1):
             v = [tablelist[x][xx - x] for x in range(xx, -1, -1)]
-            vector.append(v)
+            vectora.append(v)
             v = [tablelist[x][column - x + column - xx - 2]
                  for x in range(column - xx - 1, column)]
-            vector.append(v)
+            vectora.append(v)
 
-        for v in vector:
+        for v in vectora:
             score = analyze_vector(v)
             if currentPlayer == colour.white:
                 tablescore += score['black'] - score['white']
@@ -157,17 +211,28 @@ def evaluate(column,tablelist,currentPlayer):
                 tablescore += score['white'] - score['black']
         return tablescore
     
-def aichess(column,tablelist,x,y):
+def aichess(column,tablelist,x,y,currentPlayer):
+    currentx, currenty, currentPlayerr = x, y, currentPlayer
     for a in range(column):
         for b in range(column):
             if tablelist[a][b] != colour.empty:
                 continue
             
+            if five(x,y,currentPlayer):
+                app.set(x,y,currentPlayer)
+                return True
+            
             if not checkaround(tablelist,column,x,y):
                 continue
-        break
+            if opponentfive(currentPlayer,column) == True:
+
+            elif opponentfive(currentPlayer,column) == False:
+                app.set(x,y,currentPlayer)
+            return True
+        pass
     pass
-            
+
+
             
 
 
