@@ -125,6 +125,52 @@ def axiscount(x,y,xoffset,yoffset,column,count,tablelist,currentPlayer):
             break
     return count
 
+def evaluate(column,tablelist,currentPlayer):
+    vector = []
+    tablescore = 0
+    for xx in range(column):
+        vector.append(tablelist[xx])
+    for yy in range(column):
+        vector.append([tablelist[xx][yy] for xx in range(column)])
+
+        vector.append([tablelist[x][x] for x in range(column)])
+        for xx in range(1, column - 4):
+            v = [tablelist[x][x - xx] for x in range(xx, column)]
+            vector.append(v)
+            v = [tablelist[y - xx][y] for y in range(xx, column)]
+            vector.append(v)
+
+        vector.append([tablelist()[x][column - x - 1] for x in range(column)])
+
+        for xx in range(4, column - 1):
+            v = [tablelist[x][xx - x] for x in range(xx, -1, -1)]
+            vector.append(v)
+            v = [tablelist[x][column - x + column - xx - 2]
+                 for x in range(column - xx - 1, column)]
+            vector.append(v)
+
+        for v in vector:
+            score = analyze_vector(v)
+            if currentPlayer == colour.white:
+                tablescore += score['black'] - score['white']
+            else:
+                tablescore += score['white'] - score['black']
+        return tablescore
+    
+def aichess(column,tablelist,x,y):
+    for a in range(column):
+        for b in range(column):
+            if tablelist[a][b] != colour.empty:
+                continue
+            
+            if not checkaround(tablelist,column,x,y):
+                continue
+        break
+    pass
+            
+            
+
+
 
 
 
