@@ -135,17 +135,17 @@ def subset(a, b):
             return True
     return False
 
-def five(currentPlayer,x,y,tablelist):
+def five(currentPlayer,x,y,tablelist,column):
     offset = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1), (1, -1)], [(-1, -1), (1, 1)]]
     for axis in offset:
         chesscount = 1
         for (xoffset, yoffset) in axis:
-            chesscount += axiscount(x, y, xoffset, yoffset, currentPlayer, tablelist)
+            chesscount += axiscount(x,y,xoffset,yoffset,column,tablelist,currentPlayer)
             if chesscount >= 5:
                 return True
     return False
 
-def opponentfive(currentPlayer,column):
+def opponentfive(currentPlayer,column,tablelist):
     vectora = []
 
     for a in range(column):
@@ -168,9 +168,9 @@ def opponentfive(currentPlayer,column):
         v = [tablelist[x][column - x + column - a - 2] for x in range(column - a - 1, column)]
         vectora.append(v)
 
-        for vector in vectors:
+        for vector in vectora:
             t = enumcolour(vector)
-            if currentPlayer == colour.blcak:
+            if currentPlayer == colour.black:
                 for chess in white5:
                     if subset(chess, t):
                         return True
@@ -213,37 +213,36 @@ def evaluate(column,tablelist,currentPlayer):
         return tablescore
 
 # waiting debug
-def generate(column,currentPlayer,table):
-        for i in range(column):
-            for j in range(column):
-                if tablelist != colour.empty:
-                    continue
-                if not checkaround(tablelist, x, y):
-                    continue
+def generate(column,currentPlayer,table,tablelist):
+    for i in range(column):
+        for j in range(column):
+            if tablelist != colour.empty:
+                continue
+            if not checkaround(tablelist,column,x,y):
+                continue
 
-                if currentPlayer == colour.white:
-                    nextchess = colour.black
-                else:
-                    nextchess = colour.white
+            if currentPlayer == colour.white:
+                nextchess = colour.black
+            else:
+                nextchess = colour.white
 
-                nextPlay = deepcopy(table), nextchess, depth-1
-                app.set(i, j, currentPlayer) 
-                yield (nextPlay, i, j)
+            nextPlay = deepcopy(table), nextchess, depth-1
+            app.set(i, j, currentPlayer) 
+            yield (nextPlay, i, j)
 
-def alphabeta(self, depth, alpha=-10000000, beta=10000000,):
-
-        if depth <= 0:
-            score = -evaluate()
-            return score
-        
-        for (nextPlay, i, j) in generate():
-            tempscore = -alphabeta(nextPlay, -beta, -alpha)
-            if tempscore > beta:
-                return beta
-            if tempscore > alpha:
-                alpha = temp_score
-                (currentx, currenty) = (i, j)
-        return alpha
+def alphabeta(depth,column,currentPlayer,table,tablelist,alpha=-10000000,beta=10000000):
+    if depth <= 0:
+        score = -evaluate(column,tablelist,currentPlayer)
+        return score
+    
+    for (nextPlay, i, j) in generate(column,currentPlayer,table,tablelist):
+        tempscore = -alphabeta(nextPlay, beta=-beta, alpha=-alpha)
+        if tempscore > beta:
+            return beta
+        if tempscore > alpha:
+            alpha = tempscore
+            (currentx, currenty) = (i, j)
+    return alpha
 
 def aichess(column, tablelist, x, y, currentPlayer, depth):
     currentx, currenty, currentPlayerr = x, y, currentPlayer
@@ -252,28 +251,30 @@ def aichess(column, tablelist, x, y, currentPlayer, depth):
             if tablelist[currentx][currenty] != colour.empty:
                 continue
             
-            if five(x,y,currentPlayer):
-                app.set(x,y,currentPlayer)
-                #return [x, y]
-                return True
+            if five(x,y,currentPlayerr,tablelist,column):
+                #app.set(x,y,currentPlayer)
+                return [x, y]
             
             if not checkaround(tablelist,column,x,y):
                 continue
-            if opponentfive(currentPlayer,column) == True:
+            if opponentfive(currentPlayerr,column,tablelist) == True:
                 pass
-            elif opponentfive(currentPlayer,column) == False:
-                app.set(x,y,currentPlayer)
-                #return [x, y]
+            elif opponentfive(currentPlayerr,column,tablelist) == False:
+                #app.set(x,y,currentPlayer)
+                return [x, y]
             return True
 
 
 def Example(column, table, tableList, tableStr, lastChess, currentPlayer, p1, p2, currentPlayerName, round):
+    depth = 2
+    currentx = 0
+    currenty = 0
     node = table, currentPlayer, depth, currentx ,currenty
     score = alphabeta(node)
     print(score)
     (x,y) = (node.currentx, node.currenty)
 
-    if not yx == None and not y == None:
+    if not x == None and not y == None:
         if tablelist[xx][yy] != colour.empty:
             aichess(column, tablelist, x, y, currentPlayer, depth)
         else:
@@ -282,6 +283,7 @@ def Example(column, table, tableList, tableStr, lastChess, currentPlayer, p1, p2
 
 
 import ChessApp
+
 chess = ChessApp.start(column=20, inp2=Example,p1=1,p2=2, p1Name="SB", p2Name="Ai1", autoPrint=False)
 
             
