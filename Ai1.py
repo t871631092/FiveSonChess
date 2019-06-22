@@ -210,16 +210,50 @@ def evaluate(column,tablelist,currentPlayer):
             else:
                 tablescore += score['white'] - score['black']
         return tablescore
-    
-def aichess(column,tablelist,x,y,currentPlayer):
+
+# waiting debug
+def generate(column,currentPlayer,table):
+        for i in range(column):
+            for j in range(column):
+                if tablelist != colour.empty:
+                    continue
+                if not checkaround(tablelist, x, y):
+                    continue
+
+                if currentPlayer == colour.white:
+                    nextchess = colour.black
+                else:
+                    nextchess = colour.white
+
+                nextPlay = deepcopy(table), nextchess, depth-1
+                app.set(i, j, currentPlayer) 
+                yield (nextPlay, i, j)
+
+def alphabeta(self, depth, alpha=-10000000, beta=10000000,):
+
+        if depth <= 0:
+            score = -evaluate()
+            return score
+        
+        for (nextPlay, i, j) in generate():
+            tempscore = -alphabeta(nextPlay, -beta, -alpha)
+            if tempscore > beta:
+                return beta
+            if tempscore > alpha:
+                alpha = temp_score
+                (currentx, currenty) = (i, j)
+        return alpha
+
+def aichess(column, tablelist, x, y, currentPlayer, depth):
     currentx, currenty, currentPlayerr = x, y, currentPlayer
-    for a in range(column):
-        for b in range(column):
-            if tablelist[a][b] != colour.empty:
+    for currentx in range(column):
+        for currenty in range(column):
+            if tablelist[currentx][currenty] != colour.empty:
                 continue
             
             if five(x,y,currentPlayer):
                 app.set(x,y,currentPlayer)
+                #return [x, y]
                 return True
             
             if not checkaround(tablelist,column,x,y):
@@ -228,9 +262,20 @@ def aichess(column,tablelist,x,y,currentPlayer):
 
             elif opponentfive(currentPlayer,column) == False:
                 app.set(x,y,currentPlayer)
+                #return [x, y]
             return True
-        pass
-    pass
+    
+node = table, currentPlayer, depth, currentx ,currenty
+score = alphabeta(node)
+print(score)
+(x,y) = (node.currentx, node.currenty)
+
+if not yx == None and not y == None:
+    if tablelist[xx][yy] != colour.empty:
+        aichess(column, tablelist, x, y, currentPlayer, depth)
+    else:
+        app.set(x,y,currentPlayer)
+return
 
 
             
