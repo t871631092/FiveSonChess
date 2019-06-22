@@ -1,6 +1,6 @@
 import random
 from colour import colour
-
+from copy import deepcopy
 black6 =          [['empty', 'black', 'black', 'black', 'black','empty'],
                    ['empty', 'black', 'black', 'black', 'empty','empty'],
                    ['empty', 'empty', 'black', 'black', 'black','empty'],
@@ -124,8 +124,9 @@ def axiscount(x,y,xoffset,yoffset,column,tablelist,currentPlayer):
         else:
             break
     return count
-
-def subset(small, b): # True means a is a subset of b / a是b的子集
+# True means a is a subset of b 
+# True 表示 a是b的子集
+def subset(a, b): 
     for i in range(len(b)-len(a)+1):
         for j in range(len(a)):
             if b[i+j] != a[j]:
@@ -259,12 +260,12 @@ def aichess(column, tablelist, x, y, currentPlayer, depth):
             if not checkaround(tablelist,column,x,y):
                 continue
             if opponentfive(currentPlayer,column) == True:
-
+                pass
             elif opponentfive(currentPlayer,column) == False:
                 app.set(x,y,currentPlayer)
                 #return [x, y]
             return True
-    
+
 node = table, currentPlayer, depth, currentx ,currenty
 score = alphabeta(node)
 print(score)
