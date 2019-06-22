@@ -1,2 +1,2 @@
-import ChessApp
-chess = ChessApp.start(column=20)
+数字=1
+print(数字)

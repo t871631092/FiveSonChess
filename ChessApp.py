@@ -8,6 +8,8 @@
 #  check(x,y)         : x = x axis, y = y axis | return the string of the current x,y in checkerboard
 #  printStr()         : return the string of Processing checkerboard-list
 #  ptint()            : print the Processing checkerboard-list
+#  set(x,y，z)           :从0开始 设置为z
+#  checkbyzero(x,y)   :从0开始
 #  checkWinByXY(x,y)  : x = x axis, y = y axis | return false/string --return string of position if the input position player is win
 
 import os
