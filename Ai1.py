@@ -266,18 +266,23 @@ def aichess(column, tablelist, x, y, currentPlayer, depth):
                 #return [x, y]
             return True
 
-node = table, currentPlayer, depth, currentx ,currenty
-score = alphabeta(node)
-print(score)
-(x,y) = (node.currentx, node.currenty)
 
-if not yx == None and not y == None:
-    if tablelist[xx][yy] != colour.empty:
-        aichess(column, tablelist, x, y, currentPlayer, depth)
-    else:
-        app.set(x,y,currentPlayer)
-return
+def Example(column, table, tableList, tableStr, lastChess, currentPlayer, p1, p2, currentPlayerName, round):
+    node = table, currentPlayer, depth, currentx ,currenty
+    score = alphabeta(node)
+    print(score)
+    (x,y) = (node.currentx, node.currenty)
 
+    if not yx == None and not y == None:
+        if tablelist[xx][yy] != colour.empty:
+            aichess(column, tablelist, x, y, currentPlayer, depth)
+        else:
+            return [x,y]
+    return
+
+
+import ChessApp
+chess = ChessApp.start(column=20, inp2=Example,p1=1,p2=2, p1Name="SB", p2Name="Ai1", autoPrint=False)
 
             
 
